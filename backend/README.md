@@ -1,23 +1,25 @@
-## ts-boilerplate
+## backend
 
-![CI](https://github.com/terror/ts-boilerplate/workflows/CI/badge.svg)
+Running the project locally:
 
-A quick boilerplate for node + typescript projects (with docker support)
+```bash
+$ yarn start
+```
 
-## Building the image
+Building the image:
 
 ```bash
 $ yarn build
 ```
 
-## Running the container
+Running the container:
 
 ```bash
-$ docker run -dp 3000:3000 ts-boilerplate
+$ docker run -dp 5000:5000 guild-backend
 ```
 
-## Test with jest + coverage
+Running the tests + coverage
 
 ```bash
-$ yarn test
+yarn test
 ```
