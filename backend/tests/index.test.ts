@@ -1,4 +1,4 @@
-import { app, server } from '../src';
+import { app, server } from '..';
 import { agent as request } from 'supertest';
 
 describe('testing api route', () => {
