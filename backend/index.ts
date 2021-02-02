@@ -6,6 +6,7 @@ import { isAuthenticated } from './src/middleware/auth';
 
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import userRouter from './src/routes/user';
 import authRouter from './src/routes/auth';
@@ -29,6 +30,14 @@ app.use(
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(
+    cors({
+        origin: 'http://localhost:3000', // allow to server to accept request from different origin
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true, // allow session cookie from browser to pass through
+    })
+);
 
 app.get('/', isAuthenticated, (req: Request, res: Response) => {
     res.status(statusCodes.SUCCESS).send(req.user);
