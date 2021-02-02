@@ -10,11 +10,9 @@ import {
     MenuGroup,
     MenuList,
     MenuItem,
-    Icon,
-    IconButton,
+    Avatar,
 } from '@chakra-ui/react';
 
-import { CgProfile } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { useAuth } from '../../providers/AuthProvider';
@@ -39,15 +37,10 @@ const styles = {
     },
 };
 
-const MenuLink: React.FC<MenuLinkProps> = ({
-    children,
-    isLast,
-    to = '/',
-    ...rest
-}: any) => {
+const MenuLink: React.FC<MenuLinkProps> = ({ children, isLast, to = '/', ...rest }: any) => {
     return (
         <Link to={to}>
-            <Text display="block" {...rest}>
+            <Text display="block" fontWeight="bold" {...rest}>
                 {children}
             </Text>
         </Link>
@@ -55,7 +48,7 @@ const MenuLink: React.FC<MenuLinkProps> = ({
 };
 
 const ProfileDropdown: React.FC<ProfileDropdownProps> = () => {
-    const { logout }: any = useAuth();
+    const { logout, currentUser }: any = useAuth();
 
     const handleLogout = async () => {
         try {
@@ -67,8 +60,8 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = () => {
 
     return (
         <Menu>
-            <MenuButton as={IconButton}>
-                <Icon as={CgProfile} />
+            <MenuButton>
+                <Avatar name={currentUser.username} src={currentUser.avatar}/>
             </MenuButton>
             <MenuList>
                 <MenuGroup title="Account">
@@ -89,20 +82,12 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = () => {
 export const MenuLinks: React.FC<MenuLinksProps> = ({ isOpen }) => {
     const { currentUser }: any = useAuth();
     return (
-        <Box
-            display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
-            flexBasis={{ base: '100%', md: 'auto' }}
-        >
-            <Stack
-                {...styles.stack}
-                direction={['column', 'row', 'row', 'row']}
-            >
-                <MenuLink to="/">Home</MenuLink>
+        <Box display={{ base: isOpen ? 'block' : 'none', md: 'block' }} flexBasis={{ base: '100%', md: 'auto' }}>
+            <Stack {...styles.stack} direction={['column', 'row', 'row', 'row']}>
                 <ColorModeSwitcher />
+                <MenuLink to="/">Home</MenuLink>
                 {!currentUser ? <MenuLink to="/login">Login</MenuLink> : null}
-                {currentUser ? (
-                    <MenuLink to="/dashboard">Dashboard</MenuLink>
-                ) : null}
+                {currentUser ? ( <MenuLink to="/dashboard">Dashboard</MenuLink> ) : null}
                 {currentUser ? <ProfileDropdown /> : null}
             </Stack>
         </Box>
