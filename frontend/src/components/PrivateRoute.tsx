@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProvider';
 
-const PrivateRoute = ({ component: Node, ...rest }: any) => {
+export const PrivateRoute = ({ component: Node, ...rest }: any) => {
     const { currentUser }: any = useAuth();
     return (
         <Route
@@ -17,5 +17,3 @@ const PrivateRoute = ({ component: Node, ...rest }: any) => {
         />
     );
 };
-
-export default PrivateRoute;

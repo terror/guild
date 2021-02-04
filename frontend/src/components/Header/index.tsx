@@ -40,13 +40,19 @@ export const Header: React.FC<HeaderProps> = () => {
                 mt="24px"
                 mr="24px"
                 onClick={handleClick}
+                isLoading={loading}
             >
                 Sign in with GitHub
                 <Icon ml={2} as={AiOutlineLogin} />
             </Button>
 
-            <Link href="https://github.com/terror" target="_blank" isExternal>
-                <Button size="lg" mt="24px" isLoading={loading}>
+            <Link
+                href="https://github.com/terror/guild"
+                target="_blank"
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+            >
+                <Button size="lg" mt="24px">
                     GitHub
                     <Icon ml={2} as={AiFillGithub} />
                 </Button>

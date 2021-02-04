@@ -43,8 +43,7 @@ export const Social: React.FC<SocialProps> = () => {
                                 src="https://bit.ly/prosper-baba"
                             />
                             <Text ml={3} alignSelf="center">
-                                Building the next generation elixir
-                                applications!
+                                Building next generation elixir applications.
                             </Text>
                             <Button ml={3} mt={2} size="sm">
                                 Connect
@@ -58,8 +57,7 @@ export const Social: React.FC<SocialProps> = () => {
                                 src="https://bit.ly/code-beast"
                             />
                             <Text ml={3} alignSelf="center">
-                                Building the next generation elixir
-                                applications.
+                                Working on cutting edge financial software.
                             </Text>
                             <Button ml={3} mt={2} size="sm">
                                 Connect

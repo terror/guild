@@ -65,7 +65,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = () => {
             </MenuButton>
             <MenuList>
                 <MenuGroup title="Account">
-                    <Link to="/profile">
+                    <Link to={`/profile/${currentUser.username}`}>
                         <MenuItem>Profile</MenuItem>
                     </Link>
                     <Link to="/settings">
@@ -87,7 +87,7 @@ export const MenuLinks: React.FC<MenuLinksProps> = ({ isOpen }) => {
                 <ColorModeSwitcher />
                 <MenuLink to="/">Home</MenuLink>
                 {!currentUser ? <MenuLink to="/login">Login</MenuLink> : null}
-                {currentUser ? ( <MenuLink to="/dashboard">Dashboard</MenuLink> ) : null}
+                {currentUser ? ( <MenuLink to="/create">Create</MenuLink> ) : null}
                 {currentUser ? <ProfileDropdown /> : null}
             </Stack>
         </Box>

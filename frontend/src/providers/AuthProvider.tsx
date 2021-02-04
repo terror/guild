@@ -22,16 +22,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
     const logout = () => {
         window.open(`${baseURL}/auth/logout`, '_self');
+        localStorage.removeItem('user');
     };
 
     useEffect(() => {
-        api.get('/auth/login/success')
-            .then((res) => {
-                setCurrentUser(res.data.user);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        if (localStorage.getItem('user')) {
+            setCurrentUser(JSON.parse(localStorage.getItem('user')!));
+        } else {
+            api.get('/auth/login/success')
+                .then((res) => {
+                    setCurrentUser(res.data.user);
+                    localStorage.setItem('user', JSON.stringify(res.data.user));
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
         setLoading(false);
     }, []);
 

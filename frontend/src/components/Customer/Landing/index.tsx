@@ -1,9 +1,28 @@
 import React from 'react';
-import { useAuth } from '../../../providers/AuthProvider';
+
+import { RoomProvider } from '../../../providers/RoomProvider';
+
+import { AllRooms } from './AllRooms';
+import { HotRooms } from './HotRooms';
+import { PastRooms } from './PastRooms';
+import { Wrap, WrapItem } from '@chakra-ui/react';
 
 interface LandingProps {}
 
 export const Landing: React.FC<LandingProps> = () => {
-    const { currentUser }: any = useAuth();
-    return <div>{JSON.stringify(currentUser)}</div>;
+    return (
+        <RoomProvider>
+            <Wrap display="flex" justifyContent="space-evenly">
+                <WrapItem>
+                    <AllRooms />
+                </WrapItem>
+                <WrapItem>
+                    <HotRooms />
+                </WrapItem>
+                <WrapItem>
+                    <PastRooms />
+                </WrapItem>
+            </Wrap>
+        </RoomProvider>
+    );
 };

@@ -22,7 +22,7 @@ export const Home: React.FC<HomeProps> = () => {
                     <Center>
                         <Header />
                     </Center>
-                    <Divider />
+                    <Divider w="85%" m="auto" />
                     <Features />
                 </div>
             )}
