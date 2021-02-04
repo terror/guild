@@ -5,3 +5,9 @@ export interface IUser {
     email: string;
     avatar: string;
 }
+
+export interface IRoom {
+    name: string;
+    topic: string;
+    members: number;
+}

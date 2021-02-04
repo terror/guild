@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 
 import { statusCodes } from './src/config/statusCodes';
-import { passport } from './src/middleware/auth';
-import { isAuthenticated } from './src/middleware/auth';
+import { passport, isAuthenticated } from './src/middleware/auth';
 
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
@@ -10,6 +9,7 @@ import cors from 'cors';
 
 import userRouter from './src/routes/user';
 import authRouter from './src/routes/auth';
+import roomRouter from './src/routes/room';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -45,6 +45,7 @@ app.get('/', isAuthenticated, (req: Request, res: Response) => {
 
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/rooms', roomRouter);
 
 const server = app.listen(port, () => {
     console.log(`Server listening on port: ${port}`);
